@@ -74,7 +74,9 @@ public:
     for (const auto& s_i : deser_list_) {
       if (s_i.key.empty()) continue;
       void* mem_addr = (void*)((OffserType)this - s_i.base_offset + s_i.mem_offset);
-      const auto& v = buf[s_i.key];
+      auto itr = buf.find(s_i.key);
+      if (itr == buf.cend()) continue;
+      const auto& v = *itr;
       s_i.fun(v, mem_addr);
     }
   }

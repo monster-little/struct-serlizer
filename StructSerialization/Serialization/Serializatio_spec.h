@@ -65,9 +65,7 @@ void TypeDeserialize(T& to, const nlohmann::json& from
       std::is_fundamental<T>::value || std::is_base_of<std::string, T>::value
   , int>::type = {})
 {
-  static_assert(
-    nlohmann::detail::is_default_constructible<T>::value
-    && nlohmann::detail::has_from_json<nlohmann::json, T>::value
+  static_assert(nlohmann::detail::has_from_json<nlohmann::json, T>::value
     , "not compabiliable");
   from_json(from, to);
 }
