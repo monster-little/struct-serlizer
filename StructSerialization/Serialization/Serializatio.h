@@ -88,7 +88,7 @@ protected:
 
 #define SERIALIZATION_MEMBER(type, name) \
 public: \
-  type name; \
+  type name = {}; \
 private: \
   static void Serialize_##name(nlohmann::json& dst, const void* mem) \
   { \
